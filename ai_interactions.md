@@ -9,20 +9,24 @@
 > Document your experience using an AI agent (e.g., Cursor Agent, Claude, Copilot) to make multi-step changes autonomously.
 
 **What task did you give the agent?**
-
-<!-- Describe the goal you asked the agent to accomplish -->
+I used an AI coding assistant to extend GrooveHUB with advanced song features, artist diversity, multiple scoring modes, and formatted terminal output.
 
 **Prompts used:**
-
-<!-- Paste the key prompts you gave the agent -->
+- Challenge 1 — "Add at least five advanced song attributes, update the scoring logic, document simulated data, and add tests."
+- Challenge 2 — "Implement Balanced, Genre-First, and Energy-Focused modes using a modular design pattern. Add a mode selector and tests."
+- Challenge 3 — "Apply a 0.25-point penalty to songs by already-recommended artists. Update explanations and add tests."
+- Challenge 4 — "Display recommendations in an ASCII table showing rank, song, artist, score, and scoring reasons. Handle long text and add tests."
 
 **What did the agent generate or change?**
+- data/songs.csv: Added popularity, release decade, and mood tags.
+- src/recommender.py: Added advanced-feature scoring, three scoring strategies, and an artist-diversity penalty.
+- src/main.py: Added scoring-mode selection and formatted recommendation tables.
+- tests/test_recommender.py: Added tests for scoring, diversity, strategies, and table formatting.
+- README.md: Documented the additional features.
 
-<!-- List the files edited, code generated, or commands run -->
 
 **What did you verify or fix manually?**
-
-<!-- Describe anything the agent got wrong or that required human review -->
+I ran the application in all three scoring modes and compared the recommendations. I checked that the diversity penalty appeared in explanations, advanced features contributed to scores, and the table displayed all reasons. I also reviewed and reran tests after the AI corrected issues with score formatting, invalid modes, and table width.
 
 ---
 
@@ -31,13 +35,10 @@
 > Document how AI helped you choose or implement a design pattern.
 
 **Which design pattern did you use?**
-
-<!-- e.g., Strategy, Factory, Observer, etc. -->
+Strategy
 
 **How did AI help you brainstorm or implement it?**
-
-<!-- Describe the conversation or suggestions that led to your decision -->
+The AI suggested separate scoring strategies while keeping advanced-feature scoring and artist-diversity logic shared. It also recommended a configurable SCORING_MODE setting in main.py.
 
 **How does the pattern appear in your final code?**
-
-<!-- Point to the relevant class or method -->
+In src/recommender.py, Balanced, Genre-First, and Energy-Focused strategies use different genre, mood, and energy weights. In src/main.py, SCORING_MODE selects the strategy. I tested all three modes and confirmed that their scores and explanations reflected the selected weights.
